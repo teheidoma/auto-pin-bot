@@ -1,5 +1,6 @@
 ### Tired of pinned messages limit? Only 50 is not enough for you ? Install new audio-pin-bot on your server!
 ### It will create a separate channel where all the pinned messages are stored, in a pretty format.
+:warning:  **Bot doesn't track or save any information from your server!**
 # For server admins:
 Just invite bot to your server:
 
