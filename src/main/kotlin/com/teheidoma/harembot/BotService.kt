@@ -153,8 +153,8 @@ class BotService(private val properties: BotProperties) {
     data class WebhookExecute(
         val content: String,
         val username: String,
-        @JsonProperty("avatar_url")
-        val avatarUrl: String,
+        //hack to json deserialize
+        val avatar_url: String,
         val embeds: List<Map<String, Map<String, String>>> = emptyList()
     )
 }

@@ -9,4 +9,4 @@ https://discord.com/api/oauth2/authorize?client_id=698545934170194012&permission
 # For developers:
 If you considered about your privacy, or for some reasons want to deploy this bot for youself? There are docker image that helps you easly bootstrap that bot.
 
-`docker start -e bot.token=<YOUR BOT TOKEN HERE> docker.pkg.github.com/teheidoma/auto-pin-bot/auto-pin-bot:0.0.2`
+`docker start -e bot.token=<YOUR BOT TOKEN HERE> docker.pkg.github.com/teheidoma/auto-pin-bot/auto-pin-bot:0.0.3`
