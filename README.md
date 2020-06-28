@@ -2,6 +2,7 @@
 ### It will create a separate channel where all the pinned messages are stored, in a pretty format.
 # For server admins:
 Just invite bot to your server:
+
 https://discord.com/api/oauth2/authorize?client_id=698545934170194012&permissions=0&scope=bot
 
 # For developers:
