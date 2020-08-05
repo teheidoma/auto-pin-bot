@@ -184,6 +184,7 @@ guildRepository.findAll().forEach { println(it) }
                                     it.setAuthor(member.displayName, null, member.avatarUrl)
                                     it.setTimestamp(message.timestamp)
                                     it.setTitle(message.content)
+                                    if(message.attachments.isNotEmpty()) it.setImage(message.attachments.toList()[0].url)
                                     it.setDescription("#${srcChannel.name}")
                                 }
                             }
