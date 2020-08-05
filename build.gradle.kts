@@ -18,7 +18,11 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.google.guava:guava:28.2-jre")
+
+    implementation("com.h2database:h2:1.4.200")
+    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions:1.0.2.RELEASE")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
