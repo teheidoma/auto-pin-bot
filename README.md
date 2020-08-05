@@ -4,7 +4,7 @@
 # For server admins:
 Just invite bot to your server:
 
-https://discord.com/api/oauth2/authorize?client_id=698545934170194012&permissions=0&scope=bot
+https://discord.com/oauth2/authorize?client_id=698545934170194012&permissions=805415952&scope=bot
 
 # For developers:
 If you considered about your privacy, or for some reasons want to deploy this bot for youself? There are docker image that helps you easly bootstrap that bot.
