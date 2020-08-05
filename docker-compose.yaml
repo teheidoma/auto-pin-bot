@@ -4,6 +4,6 @@ services:
   auto-pin-bot:
     container_name: auto-pin-bot
     environment:
-      BOT_TOKEN: Njk4NTQ1OTM0MTcwMTk0MDEy.XpHamg.L0PdVaSTJSJLJCHGfsWA7DpUcdk
+      BOT_TOKEN: $BOT_TOKEN
     volumes:
     - ./database.mv.db:/database.mv.db
