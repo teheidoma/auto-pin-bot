@@ -7,5 +7,5 @@ services:
     environment:
       BOT_TOKEN: $BOT_TOKEN
     volumes:
-    - ./data/:/tmp/
+    - ./data/:/workspace/data/
 
