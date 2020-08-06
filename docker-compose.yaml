@@ -2,10 +2,10 @@ version: "3"
 
 services:
   auto-pin-bot:
-    image: docker.pkg.github.com/teheidoma/auto-pin-bot/auto-pin-bot:latest
+    build:
+      context: .
     container_name: auto-pin-bot
     environment:
       BOT_TOKEN: $BOT_TOKEN
     volumes:
     - ./data/:/workspace/data/
-
