@@ -6,7 +6,6 @@ services:
     container_name: auto-pin-bot
     environment:
       BOT_TOKEN: $BOT_TOKEN
+    command: mkdir /workdir/data
     volumes:
-      - type: bind
-        source: ./data/database.mv.db
-        target: /workspace/database.mv.db
+      ./data/:/workdir/data
