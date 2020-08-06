@@ -7,4 +7,6 @@ services:
     environment:
       BOT_TOKEN: $BOT_TOKEN
     volumes:
-    - ./data/database.mv.db:/workspace/database.mv.db
+      - type: bind
+        source: ./data/database.mv.db
+        target: /workspace/database.mv.db
