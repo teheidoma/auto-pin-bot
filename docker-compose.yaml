@@ -6,4 +6,4 @@ services:
     environment:
       BOT_TOKEN: $BOT_TOKEN
     volumes:
-    - ./database.mv.db:/database.mv.db
+    - ./data/:/data/
