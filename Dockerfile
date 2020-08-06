@@ -10,7 +10,7 @@ FROM openjdk:11-jdk-slim
 
 WORKDIR /workspace
 
-COPY --from /build/app.jar /workspace/app.jar
+COPY --from build /build/app.jar /workspace/app.jar
 
 RUN mkdir data
 
