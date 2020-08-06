@@ -6,6 +6,5 @@ services:
     container_name: auto-pin-bot
     environment:
       BOT_TOKEN: $BOT_TOKEN
-    command: mkdir /workdir/data
     volumes:
       ./data/:/workdir/data
