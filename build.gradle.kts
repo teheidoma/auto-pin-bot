@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootBuildImage
+import java.util.Properties
 
 plugins {
     id("org.springframework.boot") version "2.3.1.RELEASE"
@@ -49,6 +50,22 @@ tasks.register("getVersion") {
     doLast {
         println(project.version)
     }
+}
+
+tasks.register("includeVersion") {
+    doLast {
+        val file = File("$buildDir/resources/main/version.properties")
+        file.outputStream().use {
+            val properties = Properties()
+            properties["version"] = project.version
+
+            properties.store(it, null)
+        }
+    }
+}
+
+tasks.withType<ProcessResources> {
+    dependsOn("includeVersion")
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {

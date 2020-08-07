@@ -56,23 +56,12 @@ class BotService(
 
         client.eventDispatcher.on(MessageCreateEvent::class.java)
             .subscribe(::handleMessages)
-//            .filter { it.message.author.map { !it.isBot }.orElse(false) }
-//            .filter { it.message.content == "!pin import" }
-//            .flatMap { it.message.channel.zipWith(it.guild) }
-//            .flatMap {
-//                val (channel, guild) = it
-//                pinMessages(channel.pinnedMessages, Mono.just(guild))
-//            }
-//            .subscribe()
 
         client.eventDispatcher.on(GuildCreateEvent::class.java)
             .doOnEach { logger.info("loaded server \"{}\"", it.get()?.guild?.name) }
             .flatMap { getOrCreateChannel(it.guild) }
             .flatMap { getOrCreateWebhook(it) }
             .subscribe()
-
-//        guildRepository.save(GuildEntity(5,"e", 2))
-//        guildRepository.findById(5).ifPresent { println(it) }
 guildRepository.findAll().forEach { println(it) }
         client.onDisconnect().block()
     }
@@ -91,7 +80,8 @@ guildRepository.findAll().forEach { println(it) }
                     .flatMap { getOrCreateGuildEntity(it) }
                     .flatMap { guild ->
                         channel.createMessage {
-                            it.setContent("Current color - #${Integer.toHexString(guild.color)}")
+                            it.setContent("Current color - #${Integer.toHexString(guild.color).substring(2)}\n" +
+                                              "ver. ${getVersion()}")
                         }
                     }
                     .subscribe()
@@ -108,7 +98,6 @@ guildRepository.findAll().forEach { println(it) }
                 }
                     .subscribe()
             }
-//            msg.matches(Regex("pin!type\\W(WEBHOOK|EMBED)"))
             msg.matches(Regex("pin!color\\W[0-9a-fA-F]{6}")) -> {
                 event.guild
                     .flatMap { getOrCreateGuildEntity(it) }
@@ -274,9 +263,6 @@ guildRepository.findAll().forEach { println(it) }
         val embeds: List<Map<String, Map<String, String>>> = emptyList()
     )
 }
-
-//operator fun <T, U> Tuple2<T, U>.component1() = t1
-//operator fun <T, U> Tuple2<T, U>.component2() = t2
 
 fun <T, U, X> Tuple2<T, U>.append(obj: X): Tuple3<T, U, X> {
     return Tuples.of(t1, t2, obj)
