@@ -62,7 +62,7 @@ class BotService(
             .flatMap { getOrCreateChannel(it.guild) }
             .flatMap { getOrCreateWebhook(it) }
             .subscribe()
-guildRepository.findAll().forEach { println(it) }
+
         client.onDisconnect().block()
     }
 
