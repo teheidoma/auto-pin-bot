@@ -27,6 +27,6 @@ jobs:
       - name: Docker push
         run: |
           version=$(./gradlew -q getVersion)
-          docker push ghcr.io/teheidoma/prikol-bot:${version}
-          docker tag ghcr.io/teheidoma/prikol-bot:${version} ghcr.io/teheidoma/prikol-bot:latest
-          docker push ghcr.io/teheidoma/prikol-bot:latest
+          docker push ghcr.io/teheidoma/auto-pin-bot:${version}
+          docker tag ghcr.io/teheidoma/auto-pin-bot:${version} ghcr.io/teheidoma/auto-pin-bot:latest
+          docker push ghcr.io/teheidoma/auto-pin-bot:latest
