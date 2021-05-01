@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "com.teheidoma"
-version = "0.0.7"
+version = "0.0.8"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {

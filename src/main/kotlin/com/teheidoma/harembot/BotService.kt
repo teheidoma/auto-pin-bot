@@ -111,7 +111,11 @@ class BotService(
                                 .zipWith(message.channel.cast(TextChannel::class.java))
                                 .flatMap { zip ->
                                     val (member, srcChannel) = zip
-                                    if (message.attachments.first().url.endsWith("mp4")) {
+                                    if (message.attachments.size > 0 && message.attachments.first().url.endsWith("mp4")) {
+                                        textChannel.createMessage {
+                                            it.setContent(message.attachments.first().url)
+                                        }
+                                    } else {
                                         textChannel.createMessage { msg ->
                                             println("create")
                                             msg.setEmbed {
@@ -124,10 +128,6 @@ class BotService(
                                                 }
                                                 it.setDescription("#${srcChannel.name}")
                                             }
-                                        }
-                                    } else {
-                                        textChannel.createMessage {
-                                            it.setContent(message.attachments.first().url)
                                         }
                                     }
                                 }
