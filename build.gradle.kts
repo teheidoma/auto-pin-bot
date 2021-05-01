@@ -51,22 +51,22 @@ tasks.register("getVersion") {
         println(project.version)
     }
 }
-
-tasks.register("includeVersion") {
-    doLast {
-        val file = File("$buildDir/resources/main/version.properties")
-        file.outputStream().use {
-            val properties = Properties()
-            properties["version"] = project.version
-
-            properties.store(it, null)
-        }
-    }
-}
-
-tasks.withType<ProcessResources> {
-    dependsOn("includeVersion")
-}
+//
+//tasks.register("includeVersion") {
+//    doLast {
+//        val file = File("$buildDir/resources/main/version.properties")
+//        file.outputStream().use {
+//            val properties = Properties()
+//            properties["version"] = project.version
+//
+//            properties.store(it, null)
+//        }
+//    }
+//}
+//
+//tasks.withType<ProcessResources> {
+//    dependsOn("includeVersion")
+//}
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
     archiveFileName.set("app.jar")
