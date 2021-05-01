@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "com.teheidoma"
-version = "0.0.6"
+version = "0.0.7"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -43,7 +43,7 @@ tasks.withType<Test> {
 }
 
 tasks.getByName<BootBuildImage>("bootBuildImage") {
-    imageName = "docker.pkg.github.com/teheidoma/auto-pin-bot/auto-pin-bot:${project.version}"
+    imageName = "ghcr.io/teheidoma/auto-pin-bot:${project.version}"
 }
 
 tasks.register("getVersion") {
