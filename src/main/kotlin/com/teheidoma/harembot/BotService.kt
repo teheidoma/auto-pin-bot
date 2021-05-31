@@ -14,6 +14,8 @@ import discord4j.core.event.domain.channel.PinsUpdateEvent
 import discord4j.core.event.domain.guild.GuildCreateEvent
 import discord4j.core.event.domain.message.MessageCreateEvent
 import org.slf4j.LoggerFactory
+import org.springframework.boot.context.event.ApplicationReadyEvent
+import org.springframework.context.event.EventListener
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
@@ -30,29 +32,34 @@ import reactor.util.function.component2
 import reactor.util.function.component3
 import reactor.util.function.component4
 import java.awt.Color
+import java.util.concurrent.Executor
 
 @Service
 class BotService(
         private val properties: BotProperties,
         private val guildRepository: GuildRepository,
-        private val textCommandFacade: TextCommandFacade
+        private val textCommandFacade: TextCommandFacade,
+        private val applicationTaskExecutor: Executor
 ) {
     private val logger = LoggerFactory.getLogger("main")
     private val rest = RestTemplate()
 
     private lateinit var client: GatewayDiscordClient
 
-    init {
+    @EventListener(ApplicationReadyEvent::class)
+    fun onReady() {
         val discord = DiscordClient.create(properties.token)
 
-        discord.withGateway {
-            client = it
-            Mono.`when`(
-                    it.on(PinsUpdateEvent::class.java).flatMap(this::handlePins),
-                    it.on(MessageCreateEvent::class.java).flatMap(this::handleMessages),
-                    it.on(GuildCreateEvent::class.java).flatMap(this::handleGuildCreate)
-            )
-        }.block()
+        applicationTaskExecutor.execute {
+            discord.withGateway {
+                client = it
+                Mono.`when`(
+                        it.on(PinsUpdateEvent::class.java).flatMap(this::handlePins),
+                        it.on(MessageCreateEvent::class.java).flatMap(this::handleMessages),
+                        it.on(GuildCreateEvent::class.java).flatMap(this::handleGuildCreate)
+                )
+            }.block()
+        }
     }
 
     fun handleGuildCreate(event: GuildCreateEvent): Mono<Webhook> {
