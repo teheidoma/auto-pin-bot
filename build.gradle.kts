@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "com.teheidoma"
-version = "0.0.8"
+version = "0.0.9"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
@@ -20,6 +20,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.google.guava:guava:28.2-jre")
 
