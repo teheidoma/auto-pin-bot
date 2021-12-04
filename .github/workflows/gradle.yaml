@@ -30,3 +30,12 @@ jobs:
           docker push ghcr.io/teheidoma/auto-pin-bot:${version}
           docker tag ghcr.io/teheidoma/auto-pin-bot:${version} ghcr.io/teheidoma/auto-pin-bot:latest
           docker push ghcr.io/teheidoma/auto-pin-bot:latest
+      - name: Helm Lint
+        uses: WyriHaximus/github-action-helm3@v2
+        with:
+          exec: helm lint auto-pin-bot && helm dep update auto-pin-bot
+      - name: Helm install
+        uses: WyriHaximus/github-action-helm3@v2
+        with:
+          exec: helm upgrade --install auto-pin-bot auto-pin-bot
+          kubeconfig: '${{ secrets.KUBECONFIG }}'
